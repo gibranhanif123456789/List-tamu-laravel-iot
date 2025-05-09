@@ -10,6 +10,12 @@
     <input type="text" name="institution" placeholder="Instansi/Perusahaan" value="{{ old('institution', $guest->institution ?? '') }}" class="w-full px-4 py-2 border rounded" />
     <input type="text" name="purpose" placeholder="Tujuan" value="{{ old('purpose', $guest->purpose ?? '') }}" required class="w-full px-4 py-2 border rounded" />
     <input type="text" name="contact" placeholder="Kontak (opsional)" value="{{ old('contact', $guest->contact ?? '') }}" class="w-full px-4 py-2 border rounded" />
+    <select name="status" class="w-full px-4 py-2 border rounded">
+    <option value="Belum diproses" {{ old('status', $guest->status ?? '') == 'Belum diproses' ? 'selected' : '' }}>Belum diproses</option>
+    <option value="Diterima" {{ old('status', $guest->status ?? '') == 'Diterima' ? 'selected' : '' }}>Diterima</option>
+    <option value="Ditolak" {{ old('status', $guest->status ?? '') == 'Ditolak' ? 'selected' : '' }}>Ditolak</option>
+</select>
+
     
     <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
         {{ isset($guest) ? 'Update' : 'Simpan' }}

@@ -14,6 +14,8 @@ class Guest extends Model
         'institution',
         'purpose',
         'contact',
+        'status',
     ];
+    
 }
 

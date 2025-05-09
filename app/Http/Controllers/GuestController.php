@@ -23,19 +23,14 @@ class GuestController extends Controller
         $request->validate([
             'name' => 'required',
             'purpose' => 'required',
+            'status' => 'required',
         ]);
-
-        Guest::create([
-            'name' => $request->name,
-            'institution' => $request->institution,
-            'purpose' => $request->purpose,
-            'contact' => $request->contact,
-            'visited_at' => now(),
-        ]);
-
-        return redirect()->route('guests.index');
+    
+        Guest::create($request->all());
+    
+        return redirect()->route('guests.index')->with('success', 'Tamu berhasil ditambahkan.');
     }
-
+    
     public function edit(Guest $guest)
     {
         return view('guests.create', compact('guest'));
@@ -46,11 +41,12 @@ class GuestController extends Controller
         $request->validate([
             'name' => 'required',
             'purpose' => 'required',
+            'status' => 'required',
         ]);
-
-        $guest->update($request->only('name', 'institution', 'purpose', 'contact'));
-
-        return redirect()->route('guests.index');
+    
+        $guest->update($request->all());
+    
+        return redirect()->route('guests.index')->with('success', 'Data tamu berhasil diperbarui.');
     }
 
     public function destroy(Guest $guest)
